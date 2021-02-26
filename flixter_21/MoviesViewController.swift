@@ -73,7 +73,7 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         cell.titleLabel.text = title
         cell.synopsisLabel.text = synopsis // this will get one line of the synopsis we need to figure out how to optimize it 
         
-        let baseUrl = "https://image.tmdb.ord/t/p/w185"
+        let baseUrl = "https://image.tmdb.org/t/p/w185" // <--haha found the bug!! its .org not .ord :p
         let posterPath = movie["poster_path"] as! String
         let posterUrl = URL(string: baseUrl + posterPath)
         
