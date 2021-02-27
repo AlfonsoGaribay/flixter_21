@@ -8,6 +8,7 @@
 import UIKit
 import AlamofireImage
 
+
 class MoviesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     // properties
@@ -82,5 +83,24 @@ class MoviesViewController: UIViewController, UITableViewDataSource, UITableView
         return cell
     }
     
-
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("Loading up the details screen here....")
+        
+        //Find the selected movie
+        let cell = sender as! UITableViewCell // <-- not sure what to do about this
+        let indexPath = tableView.indexPath(for: cell)!
+        let movie = movies[indexPath.row]
+        
+        // pass the selected movie to the details view controller
+        //the sender ios the cell that was tapped on
+        let detailsViewController = segue.destination as! MovieDetailsViewController
+        detailsViewController.movie = movie
+        
+        
+        tableView.deselectRow(at: indexPath, animated: true) // <-- this deselects the row we selected 
+        
+    }
+    
 }
